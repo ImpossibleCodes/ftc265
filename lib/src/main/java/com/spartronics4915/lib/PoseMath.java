@@ -16,10 +16,15 @@ public class PoseMath {
     public static Pose2d transformBy(Pose2d t, Pose2d b) {
         double cos_t = Math.cos(t.getHeading());
         double sin_t = Math.sin(t.getHeading());
+        double x_t = t.getX();
+        double y_t = t.getY();
+        double x_b = b.getX();
+        double y_b = b.getY();
+        
 
         return new Pose2d(
-                t.getX() + (b.getX() * cos_t - b.getY() * sin_t),
-                t.getY() + (b.getX() * sin_t + b.getY() * cos_t),
+                x_t + (x_b * cos_t - y_b * sin_t),
+                y_t + (x_b * sin_t + y_b * cos_t),
                 t.getHeading() + b.getHeading());
     }
 
